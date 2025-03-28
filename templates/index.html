@@ -7,11 +7,11 @@
 </head>
 <body>
     <div class="title">Список дисциплин</div>
-    <div class="button">Компьютерная графика</div> <!-- kg.html -->
-    <div class="button">ОБД</div> <!-- odb.html -->
-    <div class="button">Английский язык</div> <!-- el.html -->
-    <div class="button">Физическая культура</div> <!-- pc.html -->
-    <div class="button">Алгоритмы</div> <!-- al.html -->
-    <div class="s_button">Добавить студента</div> <!-- student.html -->
+    <a href="{{ url_for('kg') }}" class="button">Компьютерная графика</a> <!-- kg.html -->
+    <a href="{{ url_for('odb') }}" class="button">ОБД</a> <!-- odb.html -->
+    <a href="{{ url_for('el') }}" class="button">Английский язык</a> <!-- el.html -->
+    <a href="{{ url_for('pc') }}" class="button">Физическая культура</a> <!-- pc.html -->
+    <a href="{{ url_for('al') }}" class="button">Алгоритмы</a> <!-- al.html -->
+    <a href="{{ url_for('student') }}" class="s_button">Добавить студента</a> <!-- student.html -->
 </body>
 </html>
