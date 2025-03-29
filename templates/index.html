@@ -8,13 +8,15 @@
 <body>
     <div class="top-container">
         <div class="title">Список дисциплин</div>
-        <a href="{{ url_for('login') }}" class="corner-button">Войти</a>
+        <a href="{{url_for('logout')}}" class="corner-button">Выйти из учетной записи</a>
     </div>
     <a href="{{ url_for('kg') }}" class="button">Компьютерная графика</a> <!-- kg.html -->
     <a href="{{ url_for('odb') }}" class="button">ОБД</a> <!-- odb.html -->
     <a href="{{ url_for('el') }}" class="button">Английский язык</a> <!-- el.html -->
     <a href="{{ url_for('pc') }}" class="button">Физическая культура</a> <!-- pc.html -->
     <a href="{{ url_for('al') }}" class="button">Алгоритмы</a> <!-- al.html -->
-    <a href="{{ url_for('student') }}" class="s_button">Добавить студента</a> <!-- student.html -->
+    {% if current_user.group == 'admin' %}
+        <a href="{{ url_for('student') }}" class="s_button">Добавить студента</a> <!-- student.html -->
+    {% endif %}
 </body>
 </html>
