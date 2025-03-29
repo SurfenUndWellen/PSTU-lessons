@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
+<header class="top-container">
+</header>
 <head>
     <meta charset="UTF-8">
-    <title>Flask App</title>
+    <title>Журнал ПГТУ</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -13,5 +15,6 @@
     <a href="{{ url_for('pc') }}" class="button">Физическая культура</a> <!-- pc.html -->
     <a href="{{ url_for('al') }}" class="button">Алгоритмы</a> <!-- al.html -->
     <a href="{{ url_for('student') }}" class="s_button">Добавить студента</a> <!-- student.html -->
+    <a href="{{ url_for('login') }}" class="corner-button">Войти</a> <!-- login.html -->
 </body>
 </html>
