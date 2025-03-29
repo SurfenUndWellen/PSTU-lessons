@@ -5,11 +5,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 
-
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    id = db.column(db.Integer, primary_key=True)
+    login = db.column(db.string(80), unique=True, nullable=False)
+    password = db.column(db.string(80), unique=True, nullable=False)
+    group = db.Column(db.String(25), nullable=False)
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -34,8 +34,8 @@ def student():
 @app.route('/login')
 def login():
     return render_template('login.html')
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
