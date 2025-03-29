@@ -15,15 +15,6 @@
             margin-bottom: 20px;
             color: #ffffff;
         }
-        .top-container {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            height: 60px;
-            background-color: #f8f9fa;
-            padding: 0 20px;
-            position: relative;
-        }
         .button {
             background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: white;
