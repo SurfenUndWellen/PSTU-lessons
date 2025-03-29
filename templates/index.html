@@ -15,6 +15,8 @@
     <a href="{{ url_for('el') }}" class="button">Английский язык</a> <!-- el.html -->
     <a href="{{ url_for('pc') }}" class="button">Физическая культура</a> <!-- pc.html -->
     <a href="{{ url_for('al') }}" class="button">Алгоритмы</a> <!-- al.html -->
-    <a href="{{ url_for('student') }}" class="s_button">Добавить студента</a> <!-- student.html -->
+    {% if current_user.is_authenticated and current_user.group == 'admin' %}
+        <a href="{{ url_for('student') }}" class="s_button">Добавить студента</a> <!-- student.html -->
+    {% endif %}
 </body>
 </html>

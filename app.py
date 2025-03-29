@@ -24,12 +24,13 @@ def load_user(user_id):
 @app.route('/')
 @login_required
 def home():
-    return render_template('index.html')
+    return render_template('index.html', current_user=current_user)
 @app.route('/kg')
 def kg():
     return render_template('kg.html')
 @app.route('/pc')
 def pc():
+
     return render_template('pc.html')
 @app.route('/odb')
 def odb():
@@ -42,6 +43,7 @@ def el():
     return render_template('el.html')
 @app.route('/student')
 def student():
+
     return render_template('student.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
