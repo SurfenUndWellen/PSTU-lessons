@@ -16,6 +16,12 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=True, nullable=False)
     group = db.Column(db.String(80), nullable=False)
+class Student(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    surname = db.Column(db.String(50), nullable=False)
+    patronymic = db.Column(db.String(50))
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -26,24 +32,36 @@ def load_user(user_id):
 def home():
     return render_template('index.html', current_user=current_user)
 @app.route('/kg')
+@login_required
 def kg():
     return render_template('kg.html')
 @app.route('/pc')
+@login_required
 def pc():
 
     return render_template('pc.html')
 @app.route('/odb')
+@login_required
 def odb():
     return render_template('odb.html')
 @app.route('/al')
+@login_required
 def al():
     return render_template('al.html')
 @app.route('/el')
+@login_required
 def el():
     return render_template('el.html')
 @app.route('/student')
 def student():
-
+    if request.method == 'POST':
+        name = request.form['name']
+        surname = request.form['surname']
+        patronymic = request.form['patronymic']
+        new_student = Student(name=name, surname=surname, patronymic=patronymic)
+        db.session.add(new_student)
+        db.session.commit()
+        return redirect(url_for('home'))
     return render_template('student.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -55,8 +73,12 @@ def login():
             login_user(user)
             return redirect(url_for('home'))
         else:
-            flash('Invalid username or password')
+            flash('Неверный логин или пароль')
     return render_template('login.html')
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 with app.app_context():
     db.create_all()
 
