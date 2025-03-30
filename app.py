@@ -22,11 +22,6 @@ class Student(db.Model):
     name = db.Column(db.String(50), nullable=False)
     surname = db.Column(db.String(50), nullable=False)
     patronymic = db.Column(db.String(50), nullable=True)
-    grade_pc = db.Column(db.Numeric(5, 2), nullable=True)
-    grade_kg = db.Column(db.Numeric(5, 2), nullable=True)
-    grade_al = db.Column(db.Numeric(5, 2), nullable=True)
-    grade_odb = db.Column(db.Numeric(5, 2), nullable=True)
-    grade_el = db.Column(db.Numeric(5, 2), nullable=True)
 
 
 @login_manager.user_loader
@@ -67,15 +62,8 @@ def student():
         name = request.form['name']
         surname = request.form['surname']
         patronymic = request.form['patronymic']
-        grade_pc = request.form.get('grade_pc', type=float)
-        grade_kg = request.form.get('grade_kg', type=float)
-        grade_al = request.form.get('grade_al', type=float)
-        grade_odb = request.form.get('grade_odb', type=float)
-        grade_el = request.form.get('grade_el', type=float)
         new_student = Student(name=name, surname=surname,
-                              patronymic=patronymic, grade_pc=grade_pc,
-                              grade_kg=grade_kg, grade_al=grade_al,
-                              grade_odb=grade_odb, grade_el=grade_el)
+                              patronymic=patronymic)
         db.session.add(new_student)
         db.session.commit()
         return redirect(url_for('home'))
