@@ -10,17 +10,17 @@
     <h1>Добавьте студента</h1>
     <a href="{{url_for('manya')}}" class="manya-button">Главная страница</a>
     </div>
-    <form method="POST">
-        <label for="name">Имя:</label>
+    <form method="POST" class="student-form">
+        <label for="name">Имя*:</label>
         <input type="text" id="name" name="name" required>
         <br>
-        <label for="surname">Фамилия:</label>
+        <label for="surname">Фамилия*:</label>
         <input type="text" id="surname" name="surname" required>
         <br>
         <label for="patronymic">Отчество:</label>
         <input type="text" id="patronymic" name="patronymic">
         <br>
-        <button type="submit">Заполнить форму</button>
+        <button type="submit" class="submit-button">Заполнить форму</button>
     </form>
 </body>
 </html>
