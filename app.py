@@ -58,13 +58,24 @@ def al():
 @login_required
 def el():
     return render_template('el.html')
-@app.route('/student')
+@app.route('/manya')
+def manya():
+    return render_template('index.html')
+@app.route('/student', methods=['GET', 'POST'])
 def student():
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']
         patronymic = request.form['patronymic']
-        new_student = Student(name=name, surname=surname, patronymic=patronymic)
+        grade_pc = request.form.get('grade_pc', type=float)
+        grade_kg = request.form.get('grade_kg', type=float)
+        grade_al = request.form.get('grade_al', type=float)
+        grade_odb = request.form.get('grade_odb', type=float)
+        grade_el = request.form.get('grade_el', type=float)
+        new_student = Student(name=name, surname=surname,
+                              patronymic=patronymic, grade_pc=grade_pc,
+                              grade_kg=grade_kg, grade_al=grade_al,
+                              grade_odb=grade_odb, grade_el=grade_el)
         db.session.add(new_student)
         db.session.commit()
         return redirect(url_for('home'))
