@@ -25,8 +25,8 @@ class Student(db.Model):
 class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     grade = db.Column(db.Float, nullable=False)
-    student_id = db.column(db.Integer, db.ForeingKey('student.id'), nullable=False)
-    subject = db.column(db.String(50),nullable=False)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
+    subject = db.Column(db.String(50),nullable=False)
 
 
 @login_manager.user_loader
