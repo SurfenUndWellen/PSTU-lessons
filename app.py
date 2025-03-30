@@ -71,7 +71,7 @@ def student():
                               patronymic=patronymic)
         db.session.add(new_student)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('student_table'))
     return render_template('student.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -89,6 +89,13 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/student_table')  # Маршрут к табличке со студентами
+@login_required
+def student_table():
+    students = Student.query.all()
+    return render_template('students_table.html', students=students)
+
 with app.app_context():
     db.create_all()
 
