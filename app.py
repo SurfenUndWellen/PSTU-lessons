@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Numeric
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -21,6 +22,11 @@ class Student(db.Model):
     name = db.Column(db.String(50), nullable=False)
     surname = db.Column(db.String(50), nullable=False)
     patronymic = db.Column(db.String(50), nullable=True)
+    grade_pc = db.Column(db.Numeric(5, 2), nullable=True)
+    grade_kg = db.Column(db.Numeric(5, 2), nullable=True)
+    grade_al = db.Column(db.Numeric(5, 2), nullable=True)
+    grade_odb = db.Column(db.Numeric(5, 2), nullable=True)
+    grade_el = db.Column(db.Numeric(5, 2), nullable=True)
 
 
 @login_manager.user_loader
