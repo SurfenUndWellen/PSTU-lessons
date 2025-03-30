@@ -22,6 +22,11 @@ class Student(db.Model):
     name = db.Column(db.String(50), nullable=False)
     surname = db.Column(db.String(50), nullable=False)
     patronymic = db.Column(db.String(50), nullable=True)
+class Grades(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    grade = db.Column(db.Float, nullable=False)
+    student_id = db.column(db.Integer, db.ForeingKey('student.id'), nullable=False)
+    subject = db.column(db.String(50),nullable=False)
 
 
 @login_manager.user_loader
