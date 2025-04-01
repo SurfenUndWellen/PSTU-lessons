@@ -1,0 +1,178 @@
+/* ОСНОВНЫЕ СТИЛИ*/
+.subject-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    margin: 0;
+    padding: 20px;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+.subject-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    position: relative;
+}
+
+/*ЗАГОЛОВОК И НАВИГАЦИЯ*/
+.subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.subject-title {
+    color: #bb86fc;
+    margin: 0;
+    font-size: 1.8rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/*ТАБЛИЦА С ОЦЕНКАМИ*/
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.grades-table th {
+    background-color: #3700b3;
+    color: white;
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.grades-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #444;
+    vertical-align: middle;
+}
+
+.grades-table tr:nth-child(even) {
+    background-color: #252525;
+}
+
+.grades-table tr:hover {
+    background-color: #383838;
+}
+
+/*ФОРМА ВВОДА ОЦЕНОК*/
+.grade-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.grade-input {
+    width: 60px;
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.grade-input:focus {
+    outline: 2px solid #03dac6;
+}
+
+/*КНОПКИ*/
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: #3700b3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #4a15d1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+/*ДОП ЭЛЕМЕНТЫ*/
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+/*АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+    .subject-container {
+        padding: 20px;
+    }
+    
+    .grades-table th, 
+    .grades-table td {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .grade-input {
+        width: 50px;
+        padding: 6px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/*АНИМАЦИИ  */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.grades-table tr {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.grades-table tr:nth-child(1) { animation-delay: 0.1s; }
+.grades-table tr:nth-child(2) { animation-delay: 0.2s; }

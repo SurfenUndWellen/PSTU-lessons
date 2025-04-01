@@ -1,14 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Физическая культура</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='subject.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='subject-table.css') }}">
 </head>
-<body>
-    <div class="top-container">
-    <div class="title">Оценки по предмету</div>
-    <a href="{{url_for('manya')}}" class="manya-button">Главная страница</a>
+<body class="subject-page">
+    <div class="subject-container">
+        <h1 class="subject-title">Оценки по предмету "Физическая культура"</h1>
+        
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        
+        <div class="action-buttons">
+            <a href="{{ url_for('home') }}" class="btn btn-primary">← На главную</a>
+        </div>
+        
+        <table class="grades-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Оценка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students_list %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.surname }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.patronymic or '-' }}</td>
+                    <td>
+                        <form class="grade-form" method="POST" action="{{ url_for('save_grade') }}">
+                            <input type="hidden" name="student_id" value="{{ student.id }}">
+                            <input type="hidden" name="subject" value="физическая культура">
+                            <input class="grade-input" type="number" name="grade" 
+                                   min="0" max="5"
+                                   value="{{ grades.get(student.id, '') }}"
+                                   placeholder="{{ '-' if not grades.get(student.id) else '' }}">
+                            <button class="save-btn" type="submit">💾</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="no-data">Нет данных о студентах</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
